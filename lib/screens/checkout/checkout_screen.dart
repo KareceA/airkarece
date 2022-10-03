@@ -26,12 +26,144 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             child: Column(
               children: [
                 Container(
+                  padding: EdgeInsets.all(SizeConfig.blockSizeHorizontal! * 4),
                   height: SizeConfig.screenHeight! / 2.5,
                   width: SizeConfig.screenWidth! / 0.5,
                   decoration: BoxDecoration(
                     color: Colors.black,
                     borderRadius: BorderRadius.circular(
                         SizeConfig.blockSizeHorizontal! * 5),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Center(
+                        child: Text(
+                          "TICKET NO.",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1.5,
+                              height: 1.5),
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: "Flight Departing from:  ",
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                              letterSpacing: 1.5,
+                              height: 1.5),
+                          children: [
+                            TextSpan(
+                              text: widget.flight.departure,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: "Flight Arriving at:  ",
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                              letterSpacing: 1.5,
+                              height: 1.5),
+                          children: [
+                            TextSpan(
+                              text: widget.flight.arrival,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: "Date of Depature:  ",
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                              letterSpacing: 1.5,
+                              height: 1.5),
+                          children: [
+                            TextSpan(
+                              text: widget.flight.date,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: "Time of Depature:  ",
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                              letterSpacing: 1.5,
+                              height: 1.5),
+                          children: [
+                            TextSpan(
+                              text: widget.flight.time,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: "Type of flight seat:  ",
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                              letterSpacing: 1.5,
+                              height: 1.5),
+                          children: [
+                            TextSpan(
+                              text: "${widget.flight.type} Class",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: "Cost of flight ticket:  ",
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                              letterSpacing: 1.5,
+                              height: 1.5),
+                          children: [
+                            TextSpan(
+                              text: "\$${widget.flight.cost.toString()}",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(
@@ -241,6 +373,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   actions: [
                     InkWell(
                       onTap: (() {
+                        Navigator.of(context).pop();
                         Navigator.of(context).pop();
                       }),
                       child: Ink(
