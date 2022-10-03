@@ -104,18 +104,42 @@ class WelcomeScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.w400),
               ),
               SizedBox(height: SizeConfig.blockSizeVertical! * 2),
-              ElevatedButton(
-                onPressed: () =>
-                    {Navigator.of(context).pushNamed(homeViewRoute)},
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.black),
-                  padding: MaterialStateProperty.all(
-                    EdgeInsets.all(SizeConfig.blockSizeHorizontal! * 3),
+              InkWell(
+                onTap: (() {
+                  Navigator.of(context).pushNamed(homeViewRoute);
+                }),
+                child: Ink(
+                  padding: EdgeInsets.all(SizeConfig.blockSizeVertical! * 0.1),
+                  height: SizeConfig.blockSizeVertical! * 6.0,
+                  width: SizeConfig.blockSizeHorizontal! * 40.0,
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [
+                        Colors.purple,
+                        Colors.blue,
+                        Colors.red,
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(
+                        SizeConfig.blockSizeHorizontal! * 4),
                   ),
-                ),
-                child: const Text(
-                  "Get Started",
-                  style: TextStyle(fontSize: 15),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(
+                          SizeConfig.blockSizeHorizontal! * 3.0),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "Get Started",
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],

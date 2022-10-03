@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
+  
+
   final Map arguments = (settings.arguments ?? {}) as Map;
   switch (settings.name) {
     case welcomeViewRoute:
@@ -31,7 +33,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case checkoutViewRoute:
       return PageTransition(
-        child: const CheckoutScreen(),
+        child: CheckoutScreen(
+          flight: arguments["flight"],
+        ),
+        type: PageTransitionType.fade,
+      );
+    case availabilityViewRoute:
+      return PageTransition(
+        child: const AvailabilityScreen(),
         type: PageTransitionType.fade,
       );
     default:

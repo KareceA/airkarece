@@ -1,3 +1,5 @@
+// A class for all airlines
+
 class Airline {
   final String flightName;
   final String flightPosition;

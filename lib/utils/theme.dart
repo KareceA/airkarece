@@ -31,6 +31,7 @@ class AirKareceTheme {
   );
 
   static ThemeData lightTheme = ThemeData(
+    useMaterial3: true,
     brightness: Brightness.light,
     appBarTheme: const AppBarTheme(
       foregroundColor: Colors.black,

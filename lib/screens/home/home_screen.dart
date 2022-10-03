@@ -1,4 +1,5 @@
 import 'package:airkarece/models/top_airlines.dart';
+import 'package:airkarece/routes/routes.dart';
 import 'package:airkarece/utils/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -11,6 +12,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Airline> airlines = allAirlines;
+
   final TextEditingController _dateController = TextEditingController();
   DateTime selectedDate = DateTime.now();
   var newFormat = DateFormat(" MMMM,dd");
@@ -47,31 +50,31 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.all(SizeConfig.blockSizeHorizontal! * 5),
+            padding: EdgeInsets.all(SizeConfig.blockSizeHorizontal! * 5.0),
             child: RichText(
               text: TextSpan(
                   text: 'Flight ',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: SizeConfig.blockSizeHorizontal! * 8,
+                    fontSize: SizeConfig.blockSizeHorizontal! * 8.0,
                   ),
                   children: [
                     TextSpan(
                       text: 'search',
                       style: TextStyle(
                           color: Colors.black,
-                          fontSize: SizeConfig.blockSizeHorizontal! * 8,
+                          fontSize: SizeConfig.blockSizeHorizontal! * 8.0,
                           fontWeight: FontWeight.bold),
                     )
                   ]),
             ),
           ),
-          Container(
-            height: SizeConfig.blockSizeHorizontal! * 50,
+          SizedBox(
+            height: SizeConfig.blockSizeHorizontal! * 50.0,
             child: Padding(
               padding: EdgeInsets.only(
-                  left: SizeConfig.blockSizeHorizontal! * 5,
-                  right: SizeConfig.blockSizeHorizontal! * 5),
+                  left: SizeConfig.blockSizeHorizontal! * 5.0,
+                  right: SizeConfig.blockSizeHorizontal! * 5.0),
               child: Form(
                 child: ListView(
                   children: [
@@ -81,16 +84,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: SizeConfig.blockSizeHorizontal! * 2,
+                      height: SizeConfig.blockSizeHorizontal! * 2.0,
                     ),
                     TextFormField(
                       decoration: const InputDecoration(
                         hintText: 'Destination eg. Los Angeles',
                       ),
                     ),
-                    // SizedBox(
-                    //   height: SizeConfig.blockSizeHorizontal! * 2,
-                    // ),
                     TextFormField(
                       controller: _dateController,
                       decoration: InputDecoration(
@@ -111,47 +111,69 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(
             height: 10.0,
           ),
-          Padding(
-            padding: EdgeInsets.only(
-                left: SizeConfig.blockSizeHorizontal! * 5,
-                right: SizeConfig.blockSizeHorizontal! * 5),
-            child: Row(
-              children: [
-                ElevatedButton.icon(
-                  onPressed: () => {},
-                  style: ButtonStyle(
-                    padding: MaterialStateProperty.all(
-                      EdgeInsets.all(SizeConfig.blockSizeHorizontal! * 3),
-                    ),
-                    backgroundColor: MaterialStateProperty.all(Colors.black),
-                  ),
-                  icon: const Icon(Icons.search),
-                  label: const Text("Search"),
+          Center(
+            child: InkWell(
+              onTap: (() {
+                Navigator.of(context).pushNamed(availabilityViewRoute);
+              }),
+              child: Ink(
+                padding: EdgeInsets.all(SizeConfig.blockSizeVertical! * 0.1),
+                height: SizeConfig.blockSizeVertical! * 6.0,
+                width: SizeConfig.blockSizeHorizontal! * 40.0,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(colors: [
+                    Colors.purple,
+                    Colors.blue,
+                    Colors.red,
+                  ]),
+                  // color: Colors.black,
+                  borderRadius: BorderRadius.circular(
+                      SizeConfig.blockSizeHorizontal! * 3.0),
                 ),
-                const SizedBox(
-                  width: 10.0,
-                ),
-                OutlinedButton(
-                  onPressed: () => {},
-                  style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.all(17.0),
-                      side: const BorderSide(color: Colors.green)),
-                  child: const Text(
-                    "To corporate clients",
-                    style: TextStyle(
-                      color: Colors.black,
+                child: Ink(
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(
+                        SizeConfig.blockSizeHorizontal! * 3.0),
+                  ),
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons.search,
+                          color: Colors.white,
+                          size: 30.0,
+                        ),
+                        SizedBox(
+                          width: 5.0,
+                        ),
+                        Text(
+                          "Search",
+                          style: TextStyle(
+                            fontSize: 25.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                )
-              ],
+                ),
+              ),
             ),
           ),
           SizedBox(
-            height: SizeConfig.blockSizeVertical! * 2,
+            height: SizeConfig.blockSizeVertical! * 3.0,
           ),
           Expanded(
             child: Container(
-              height: SizeConfig.blockSizeVertical! * 35,
+              padding: EdgeInsets.only(
+                left: SizeConfig.blockSizeHorizontal! * 5.0,
+                right: SizeConfig.blockSizeHorizontal! * 5.0,
+                top: SizeConfig.blockSizeHorizontal! * 3.0,
+              ),
+              height: SizeConfig.blockSizeVertical! * 35.0,
               width: SizeConfig.screenWidth,
               decoration: BoxDecoration(
                 color: Colors.black,
@@ -162,11 +184,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("TOP-10 AIRLINES"),
-                  SizedBox(
-                    height: SizeConfig.blockSizeVertical! * 5,
+                  // SizedBox(
+                  //   height: SizeConfig.blockSizeVertical! * 3.0,
+                  // ),
+                  RichText(
+                    text: const TextSpan(
+                        text: 'TOP-10 ',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w600),
+                        children: [
+                          TextSpan(
+                            text: 'airlines',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15.0,
+                            ),
+                          )
+                        ]),
                   ),
+                  SizedBox(
+                    height: SizeConfig.blockSizeVertical! * 2.0,
+                  ),
+                  Expanded(child: _buildAirlinesList())
                 ],
               ),
             ),
@@ -200,13 +243,68 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildAirlineTile(Airline airline) => ListTile(
-        contentPadding: EdgeInsets.symmetric(
-          vertical: SizeConfig.blockSizeVertical! * 1,
-        ),
-        leading: CircleAvatar(
-          backgroundColor: Colors.pinkAccent,
-          radius: SizeConfig.blockSizeHorizontal! * 6,
-        ),
+  Widget _buildAirlineTile(Airline airline) => SizedBox(
+      width: SizeConfig.blockSizeHorizontal! * 35,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              CircleAvatar(
+                radius: SizeConfig.blockSizeHorizontal! * 6.0,
+                backgroundColor: Colors.white,
+              ),
+              SizedBox(
+                width: SizeConfig.blockSizeHorizontal! * 2.0,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    airline.flightName,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    airline.flightPosition,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("⭐"),
+              SizedBox(
+                width: SizeConfig.blockSizeHorizontal! * 2.0,
+              ),
+              Text(
+                airline.flightRating.toString(),
+                textAlign: TextAlign.start,
+                style: const TextStyle(color: Colors.white, fontSize: 30.0),
+              ),
+            ],
+          ),
+        ],
+      ));
+
+  Widget _buildAirlinesList() => ListView.separated(
+        padding: const EdgeInsets.only(top: 0),
+        itemBuilder: (context, index) {
+          final airline = airlines[index];
+          return _buildAirlineTile(airline);
+        },
+        separatorBuilder: (context, index) {
+          return SizedBox(
+            height: SizeConfig.blockSizeVertical! * 3.0,
+          );
+        },
+        itemCount: airlines.length,
       );
 }
