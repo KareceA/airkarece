@@ -1,8 +1,9 @@
 import 'package:airkarece/models/flight.dart';
 import 'package:airkarece/models/screen_models.dart';
-import 'package:airkarece/routes/routes.dart';
+import 'package:airkarece/models/ticket_model.dart';
 import 'package:airkarece/utils/app_config.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutScreen extends StatefulWidget {
   final Flight flight;
@@ -19,6 +20,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
     return Scaffold(
       appBar: _buildAppBar(),
+      drawer: const DrawerWidget(),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
@@ -222,13 +224,17 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       ),
       // backgroundColor: Colors.transparent,
       actions: [
-        IconButton(
-          icon: const Icon(
-            Icons.sort_rounded,
-            color: Colors.black,
-          ),
-          onPressed: () => {},
-        )
+        Builder(builder: (context) {
+          return IconButton(
+            icon: const Icon(
+              Icons.sort_rounded,
+              color: Colors.black,
+            ),
+            onPressed: () => {
+              Scaffold.of(context).openDrawer(),
+            },
+          );
+        })
       ],
       elevation: 0,
     );
@@ -373,6 +379,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   actions: [
                     InkWell(
                       onTap: (() {
+                        Provider.of<TicketModel>(context, listen: false)
+                            .addFlight(flight);
+
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
                       }),

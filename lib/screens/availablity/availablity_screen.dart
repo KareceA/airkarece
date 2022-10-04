@@ -1,6 +1,7 @@
 import 'package:airkarece/models/flight.dart';
 import 'package:airkarece/routes/routes.dart';
 import 'package:airkarece/utils/app_config.dart';
+import 'package:airkarece/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 
 class AvailabilityScreen extends StatefulWidget {
@@ -20,6 +21,7 @@ class _AvailabilityScreenState extends State<AvailabilityScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: _buildAppBar(),
+      drawer: const DrawerWidget(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -50,7 +52,7 @@ class _AvailabilityScreenState extends State<AvailabilityScreen> {
               width: SizeConfig.screenWidth,
               child: _buildFlightsLists(),
             ),
-          )),
+          ),),
         ],
       ),
     );
@@ -66,12 +68,18 @@ class _AvailabilityScreenState extends State<AvailabilityScreen> {
       ),
       // backgroundColor: Colors.transparent,
       actions: [
-        IconButton(
-          icon: const Icon(
-            Icons.sort_rounded,
-            color: Colors.white,
-          ),
-          onPressed: () => {},
+        Builder(
+          builder: (context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.sort_rounded,
+                color: Colors.white,
+              ),
+              onPressed: () => {
+                Scaffold.of(context).openDrawer(),
+              },
+            );
+          }
         )
       ],
       elevation: 0,
