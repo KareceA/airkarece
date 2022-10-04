@@ -1,14 +1,21 @@
+import 'package:airkarece/models/ticket_model.dart';
 import 'package:airkarece/routes/routes.dart';
 import 'package:airkarece/utils/app_config.dart';
 import 'package:airkarece/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:airkarece/routes/router.dart' as router;
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   // Bind all files to the app before the app starts. enables environment
   // variables to be bounded to app before the app starts
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const Airkarece());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => TicketModel(),
+      child: const Airkarece(),
+    ),
+  );
 }
 
 class Airkarece extends StatelessWidget {

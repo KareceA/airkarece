@@ -170,15 +170,15 @@ class WelcomeScreen extends StatelessWidget {
             ]),
       ),
       // backgroundColor: Colors.transparent,
-      actions: [
-        IconButton(
-          icon: const Icon(
-            Icons.sort_rounded,
-            color: Colors.black,
-          ),
-          onPressed: () => {},
-        )
-      ],
+      // actions: [
+      //   IconButton(
+      //     icon: const Icon(
+      //       Icons.sort_rounded,
+      //       color: Colors.black,
+      //     ),
+      //     onPressed: () => {},
+      //   )
+      // ],
       elevation: 0,
     );
   }

@@ -2,6 +2,7 @@ import 'package:airkarece/models/top_airlines.dart';
 import 'package:airkarece/routes/routes.dart';
 import 'package:airkarece/utils/app_config.dart';
 import 'package:flutter/material.dart';
+import 'package:airkarece/widgets/drawer_widget.dart';
 import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -46,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: _buildAppBar(),
+      drawer: const DrawerWidget(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -231,13 +233,17 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       // backgroundColor: Colors.transparent,
       actions: [
-        IconButton(
-          icon: const Icon(
-            Icons.sort_rounded,
-            color: Colors.black,
-          ),
-          onPressed: () => {},
-        )
+        Builder(builder: (context) {
+          return IconButton(
+            icon: const Icon(
+              Icons.sort_rounded,
+              color: Colors.black,
+            ),
+            onPressed: () => {
+              Scaffold.of(context).openDrawer(),
+            },
+          );
+        })
       ],
       elevation: 0,
     );
