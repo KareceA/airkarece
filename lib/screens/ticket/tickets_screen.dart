@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:airkarece/models/flight.dart';
+import 'package:airkarece/models/flights.dart';
 import 'package:airkarece/models/ticket_model.dart';
 import 'package:airkarece/utils/app_config.dart';
 import 'package:airkarece/widgets/drawer_widget.dart';
@@ -10,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TicketsScreen extends StatefulWidget {
-  final Flight? flight;
+  final Flights? flight;
   const TicketsScreen({Key? key, required this.flight}) : super(key: key);
 
   @override
@@ -119,7 +120,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
     );
   }
 
-  Widget _buildTicketTile(Flight flight) => Center(
+  Widget _buildTicketTile(Flights flight) => Center(
         child: Column(
           children: [
             Container(
@@ -173,7 +174,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
                           height: 1.5),
                       children: [
                         TextSpan(
-                          text: flight.departure,
+                          text: flight.from,
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18.0,
@@ -192,7 +193,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
                           height: 1.5),
                       children: [
                         TextSpan(
-                          text: flight.arrival,
+                          text: flight.to,
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18.0,
@@ -211,7 +212,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
                           height: 1.5),
                       children: [
                         TextSpan(
-                          text: flight.date,
+                          text: flight.datetime,
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18.0,
@@ -249,7 +250,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
                           height: 1.5),
                       children: [
                         TextSpan(
-                          text: "${flight.type} Class",
+                          text: flight.status,
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18.0,
