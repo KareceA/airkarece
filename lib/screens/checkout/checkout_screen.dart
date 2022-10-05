@@ -1,4 +1,4 @@
-import 'package:airkarece/models/flight.dart';
+import 'package:airkarece/models/flights.dart';
 import 'package:airkarece/models/screen_models.dart';
 import 'package:airkarece/models/ticket_model.dart';
 import 'package:airkarece/utils/app_config.dart';
@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutScreen extends StatefulWidget {
-  final Flight flight;
+  final Flights flight;
   const CheckoutScreen({Key? key, required this.flight}) : super(key: key);
 
   @override
@@ -61,7 +61,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                               height: 1.5),
                           children: [
                             TextSpan(
-                              text: widget.flight.departure,
+                              text: widget.flight.from,
                               style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 18.0,
@@ -80,7 +80,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                               height: 1.5),
                           children: [
                             TextSpan(
-                              text: widget.flight.arrival,
+                              text: widget.flight.to,
                               style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 18.0,
@@ -99,7 +99,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                               height: 1.5),
                           children: [
                             TextSpan(
-                              text: widget.flight.date,
+                              text: widget.flight.datetime,
                               style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 18.0,
@@ -137,11 +137,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                               height: 1.5),
                           children: [
                             TextSpan(
-                              text: "${widget.flight.type} Class",
+                              text: widget.flight.status[0].toUpperCase() +
+                                  widget.flight.status.substring(1),
                               style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold),
+                                color: Colors.white,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ],
                         ),
@@ -240,7 +242,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     );
   }
 
-  Future _buildConfirmationScreen(BuildContext context, Flight flight) =>
+  Future _buildConfirmationScreen(BuildContext context, Flights flight) =>
       showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -275,7 +277,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                   height: 1.5),
                               children: [
                                 TextSpan(
-                                  text: flight.departure,
+                                  text: flight.from,
                                   style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 20.0,
@@ -293,7 +295,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                   height: 1.5),
                               children: [
                                 TextSpan(
-                                  text: flight.arrival,
+                                  text: flight.to,
                                   style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 20.0,
@@ -311,7 +313,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                   height: 1.5),
                               children: [
                                 TextSpan(
-                                  text: flight.date,
+                                  text: flight.datetime,
                                   style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 20.0,
@@ -347,7 +349,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                   height: 1.5),
                               children: [
                                 TextSpan(
-                                  text: "${flight.type} class",
+                                  text: flight.status,
                                   style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 20.0,
@@ -379,6 +381,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   actions: [
                     InkWell(
                       onTap: (() {
+                        bookFlights(flight.datetime, flight.time, flight.from,
+                            flight.to, flight.status, flight.cost, 2);
                         Provider.of<TicketModel>(context, listen: false)
                             .addFlight(flight);
 

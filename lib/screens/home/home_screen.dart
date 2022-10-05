@@ -15,6 +15,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<Airline> airlines = allAirlines;
 
+  final TextEditingController _fromController = TextEditingController();
+  final TextEditingController _toController = TextEditingController();
+
   final TextEditingController _dateController = TextEditingController();
   DateTime selectedDate = DateTime.now();
   var newFormat = DateFormat(" MMMM,dd");
@@ -39,6 +42,15 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     _dateController.text = newFormat.format(selectedDate);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _fromController.dispose();
+    _toController.dispose();
+    _dateController.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -81,6 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ListView(
                   children: [
                     TextFormField(
+                      controller: _fromController,
                       decoration: const InputDecoration(
                         hintText: 'Departure',
                       ),
@@ -89,34 +102,40 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: SizeConfig.blockSizeHorizontal! * 2.0,
                     ),
                     TextFormField(
+                      controller: _toController,
                       decoration: const InputDecoration(
-                        hintText: 'Destination eg. Los Angeles',
+                        hintText: 'Arrival eg. Los Angeles',
                       ),
                     ),
-                    TextFormField(
-                      controller: _dateController,
-                      decoration: InputDecoration(
-                        suffix: IconButton(
-                          onPressed: () => _selectDate(context),
-                          icon: const Icon(
-                            Icons.calendar_month,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                    ),
+                    // TextFormField(
+                    //   controller: _dateController,
+                    //   decoration: InputDecoration(
+                    //     suffix: IconButton(
+                    //       onPressed: () => _selectDate(context),
+                    //       icon: const Icon(
+                    //         Icons.calendar_month,
+                    //         color: Colors.grey,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
             ),
           ),
-          const SizedBox(
-            height: 10.0,
-          ),
+          // const SizedBox(height: 5.0),
           Center(
             child: InkWell(
               onTap: (() {
-                Navigator.of(context).pushNamed(availabilityViewRoute);
+                _fromController.value.text.isNotEmpty &&
+                        _toController.value.text.isNotEmpty
+                    ? Navigator.of(context)
+                        .pushNamed(flightAvailabilityViewRoute, arguments: {
+                        "from": _fromController.text,
+                        "to": _toController.text
+                      })
+                    : null;
               }),
               child: Ink(
                 padding: EdgeInsets.all(SizeConfig.blockSizeVertical! * 0.1),
