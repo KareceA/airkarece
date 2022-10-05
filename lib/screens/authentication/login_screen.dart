@@ -3,6 +3,8 @@ import 'dart:ui';
 // import 'package:myregistration/welcome.dart';
 
 // import 'signup.dart';
+import 'package:airkarece/screens/authentication/signup_screen.dart';
+
 import 'loginApi.dart';
 import 'package:airkarece/models/screen_models.dart';
 
@@ -166,7 +168,7 @@ class _MyLoginState extends State<MyLogin> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const WelcomeScreen()),
+                              builder: (context) => const MySignUp()),
                         );
                       },
                       child: _signUpLabel(

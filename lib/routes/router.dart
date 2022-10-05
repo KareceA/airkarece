@@ -3,6 +3,8 @@ import 'package:airkarece/models/screen_models.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../screens/authentication/signup_screen.dart';
+
 Route<dynamic> generateRoute(RouteSettings settings) {
   final Map arguments = (settings.arguments ?? {}) as Map;
   switch (settings.name) {

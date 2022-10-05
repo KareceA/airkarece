@@ -77,7 +77,7 @@ class DrawerWidget extends StatelessWidget {
                 color: Colors.black,
               ),
               title: const Text('LogOut'),
-              onTap: (() => Navigator.of(context).pushNamed(welcomeViewRoute)),
+              onTap: (() => Navigator.of(context).pushNamed(loginViewRoute)),
             ),
           ],
         ),

@@ -111,7 +111,7 @@ class FlightsListScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                "${flight.status} class",
+                "${flight.status}",
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,

@@ -68,7 +68,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
                           Text(
                             "Delete Tickets",
                             style: TextStyle(
-                              fontSize: 24.0,
+                              fontSize: 20.0,
                               color: Colors.red,
                               fontWeight: FontWeight.bold,
                             ),
