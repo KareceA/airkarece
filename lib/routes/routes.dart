@@ -5,4 +5,5 @@ const String loginViewRoute = 'login';
 const String signupViewRoute = 'signup';
 const String checkoutViewRoute = 'checkout';
 const String availabilityViewRoute = 'availablity';
+const String flightAvailabilityViewRoute = 'flightavailability';
 const String ticketViewRoute = 'ticket';

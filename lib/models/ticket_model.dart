@@ -1,21 +1,21 @@
 // A class to maintain the ticket cart
 
-import 'package:airkarece/models/flight.dart';
+import 'package:airkarece/models/flights.dart';
 import 'package:flutter/cupertino.dart';
 
 class TicketModel extends ChangeNotifier {
-  final List<Flight> _flights = [];
+  final List<Flights> _flights = [];
 
   int get totalFlights => _flights.length;
-  List<Flight> get flights => _flights;
+  List<Flights> get flights => _flights;
 
-  void addFlight(Flight flight) {
+  void addFlight(Flights flight) {
     _flights.add(flight);
 
     notifyListeners();
   }
 
-  void deleteFlight(Flight flight) {
+  void deleteFlight(Flights flight) {
     _flights.remove(flight);
 
     notifyListeners();
