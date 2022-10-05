@@ -1,8 +1,6 @@
 import 'package:airkarece/models/flights.dart';
 import 'package:airkarece/routes/routes.dart';
 import 'package:airkarece/utils/app_config.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 
 class FlightsListScreen extends StatelessWidget {

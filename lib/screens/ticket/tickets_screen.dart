@@ -1,12 +1,7 @@
-import 'dart:ui';
-
-import 'package:airkarece/models/flight.dart';
 import 'package:airkarece/models/flights.dart';
 import 'package:airkarece/models/ticket_model.dart';
 import 'package:airkarece/utils/app_config.dart';
 import 'package:airkarece/widgets/drawer_widget.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

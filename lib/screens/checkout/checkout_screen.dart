@@ -1,4 +1,3 @@
-import 'package:airkarece/models/flight.dart';
 import 'package:airkarece/models/flights.dart';
 import 'package:airkarece/models/screen_models.dart';
 import 'package:airkarece/models/ticket_model.dart';
@@ -382,6 +381,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   actions: [
                     InkWell(
                       onTap: (() {
+                        bookFlights(flight.datetime, flight.time, flight.from,
+                            flight.to, flight.status, flight.cost, 2);
                         Provider.of<TicketModel>(context, listen: false)
                             .addFlight(flight);
 
