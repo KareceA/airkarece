@@ -48,6 +48,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         ),
         type: PageTransitionType.fade,
       );
+    case flightAvailabilityViewRoute:
+      return PageTransition(
+        child: FlightAvailabilityScreen(
+          from: arguments["from"],
+          to: arguments["to"],
+        ),
+        type: PageTransitionType.fade,
+      );
     default:
       return PageTransition(
         child: const TestScreen(),

@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:airkarece/routes/routes.dart';
 import 'package:airkarece/utils/app_config.dart';
@@ -54,7 +53,7 @@ class WelcomeScreen extends StatelessWidget {
                     SizedBox(height: SizeConfig.blockSizeVertical! * 4),
                     Center(
                       child: CircleAvatar(
-                        radius: SizeConfig.blockSizeHorizontal! * 8,
+                        radius: SizeConfig.safeBlockHorizontal! * 8,
                         backgroundImage:
                             const AssetImage('assets/images/image1.jpg'),
                       ),
