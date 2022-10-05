@@ -143,10 +143,7 @@ packages:
       name: meta
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "1.8.0"
-=======
-    version: "1.7.0"
   nested:
     dependency: transitive
     description:
@@ -154,7 +151,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
->>>>>>> dafa343496befa2b06ca9655d3bc8c3e1588f06a
   page_transition:
     dependency: "direct main"
     description:

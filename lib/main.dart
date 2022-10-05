@@ -37,7 +37,7 @@ class Airkarece extends StatelessWidget {
       onGenerateRoute: router.generateRoute,
 
       // Initial Route
-      initialRoute: welcomeViewRoute,
+      initialRoute: loginViewRoute,
     );
   }
 }

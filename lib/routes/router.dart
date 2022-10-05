@@ -14,13 +14,13 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case loginViewRoute:
       return PageTransition(
-        child: const LoginScreen(),
+        child: const MyLogin(),
         type: PageTransitionType.fade,
       );
 
     case signupViewRoute:
       return PageTransition(
-        child: const SignupScreen(),
+        child: const MySignUp(),
         type: PageTransitionType.fade,
       );
 
